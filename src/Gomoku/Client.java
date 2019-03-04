@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Client {
     private String username,password;
@@ -13,6 +14,7 @@ public class Client {
     ReadHandlerThread listenFromServer;
     WriteHandlerThread writeToServer;
     ArrayList<String> playersArrL;
+    String receivedMsg;
 
     public void closeSocket() throws IOException{
         listenFromServer.interrupt();
@@ -20,6 +22,12 @@ public class Client {
         clientSocket.close();
     }
 
+    public ArrayList<String> getAndClearReceivedMsg() {
+        ArrayList<String> msgArr =
+                new ArrayList<>(Arrays.asList(receivedMsg.split(":")));
+        receivedMsg = null;
+        return msgArr;
+    }
 
     private static void handler(){
         try {
@@ -62,6 +70,8 @@ public class Client {
             System.out.println("register OK!");
         }
 
+        getAndClearReceivedMsg();
+
         return returnValue;
     }
 
@@ -82,6 +92,7 @@ public class Client {
             this.password = password;
         }
 
+        getAndClearReceivedMsg();
         return returnValue;
     }
 
@@ -100,9 +111,33 @@ public class Client {
         return returnValue;
     }
 
-    public boolean requireHistory(String username, String tableNum, String x,
-                            String y) {
-        return true;
+    public boolean requireLookBack(String username, String gameID) {
+        String s = "5" + ":" + username + ":" + gameID;
+        boolean returnValue;
+
+        //send s to Server
+        writeToServer.writeTo(s);
+
+        if(returnValue = handleReceivedMsg("3:0", "3:1")) {
+            System.out.println("login OK!");
+        }
+
+        return returnValue;
+
+    }
+
+    public boolean requireHistory(String username) {
+        String s = "4" + ":" + username;
+        boolean returnValue;
+
+        //send s to Server
+        writeToServer.writeTo(s);
+
+        if(returnValue = handleReceivedMsg("3:0", "3:1")) {
+            System.out.println("login OK!");
+        }
+
+        return returnValue;
     }
 
     public boolean startGame() {
@@ -125,7 +160,6 @@ public class Client {
     }
 
     public boolean handleReceivedMsg(String failMsg, String successMsg) {
-        String receivedMsg;
 
         //Waiting for message
         receivedMsg = listenFromServer.readFrom();
