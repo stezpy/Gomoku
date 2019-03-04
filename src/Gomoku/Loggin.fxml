@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="Pane" prefHeight="440.0" prefWidth="360.0"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Gomoku.LogginController">
+   <children>
+      <ImageView fx:id="icon" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="105.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Gomoku/timg.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="UsernameText" layoutX="60.0" layoutY="210.0" prefHeight="40.0" prefWidth="240.0" promptText="Username" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="210.0" />
+      <Button fx:id="Register" layoutX="70.0" layoutY="330.0"
+              mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0"
+              text="Register" AnchorPane.bottomAnchor="80.0"
+              AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="220.0"
+              AnchorPane.topAnchor="330.0" onAction="#RegisterButtonclick"/>
+      <PasswordField fx:id="PasswordText" layoutX="60.0" layoutY="270.0" prefHeight="40.0" prefWidth="240.0" promptText="Password" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="270.0" />
+      <Button fx:id="Loggin" defaultButton="true" layoutX="220.0" layoutY="330.0" mnemonicParsing="false" onAction="#LogginButtonclick" prefHeight="30.0" prefWidth="70.0" text="Loggin" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="330.0" />
+   </children>
+</AnchorPane>
