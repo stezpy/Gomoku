@@ -33,24 +33,17 @@ public class LogginController {
     
 	@FXML
 	public void LogginButtonclick(ActionEvent event) throws Exception{
-		//init();
 		String username = UsernameText.getText();
 		String password = PasswordText.getText();
-		//JOptionPane.showMessageDialog(null, "My Goodness, this is so
-		// concise");
-		//System.out.println(username + "\n" + password);
 		client.login(username, password);
-
 	}
 
 	@FXML
 	public void RegisterButtonclick(ActionEvent event) throws Exception{
-		//init();
 		String username = UsernameText.getText();
 		String password = PasswordText.getText();
 		System.out.println(username + "\n" + password);
 		client.register(username, password);
-
 	}
 
 	public void init(){

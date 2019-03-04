@@ -89,8 +89,15 @@ public class Client {
                             String y) {
         String s = "3:" + username + ":" + x + ":" + y;
         boolean returnValue;
-        //returnValue =
-        return true;
+
+        //send s to Server
+        writeToServer.writeTo(s);
+
+        if(returnValue = handleReceivedMsg("3:0", "3:1")) {
+            System.out.println("login OK!");
+        }
+
+        return returnValue;
     }
 
     public boolean requireHistory(String username, String tableNum, String x,
@@ -98,33 +105,35 @@ public class Client {
         return true;
     }
 
-    public boolean startGame() throws Exception{
+    public boolean startGame() {
 
         int userNumber = 0;
         ArrayList<String> userNames = new ArrayList<>(userNumber);
         String s = "2";
         boolean returnValue;
+
         for(String se:userNames) {
             s+=":" + se;
         }
+
         //new Thread(new ClientWriteHandlerThread(clientSocket, s)).start();
         if(returnValue = handleReceivedMsg("1:0", "1:1")) {
             System.out.println("login OK!");
         }
+
         return returnValue;
     }
 
-    public boolean handleReceivedMsg(String failMsg, String successMsg)
-            throws InterruptedException, ConnectException{
+    public boolean handleReceivedMsg(String failMsg, String successMsg) {
         String receivedMsg;
-
 
         //Waiting for message
         receivedMsg = listenFromServer.readFrom();
 
-        if(receivedMsg.equals(successMsg)){
+        // a successful received message must begin with successMsg
+        if(receivedMsg.indexOf(successMsg) == 0){
             return true;
-        }else if(receivedMsg.equals(failMsg)) {
+        }else if(receivedMsg.indexOf(failMsg) == 0) {
             System.out.println("server failed: " + failMsg);
             return false;
         }else {
