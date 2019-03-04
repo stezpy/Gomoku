@@ -14,17 +14,22 @@ class ServerReadHandlerThread implements Runnable{
     private Socket clientSocket;
     private DataInputStream clientIn;
     private DataOutputStream clientOut;
-
+    protected Game table1,table2,table3,table4;
     ServerReadHandlerThread(Socket client) {
         this.clientSocket = client;
+        this.table1 = new Game();
+        this.table2 = new Game();
+        this.table3 = new Game();
+        this.table4 = new Game();
     }
+
 
     @Override
     public void run() {
 
 
         try{
-            final String dburl="jdbc:postgresql://172.22.201.147:8888/gomoku";
+            final String dburl="jdbc:postgresql://localhost:8888/gomoku";
             final String dbusername="admin";
             final String dbpassword="admin";
             final String dbdriver = "org.postgresql.Driver";
@@ -99,62 +104,84 @@ class ServerReadHandlerThread implements Runnable{
                     //case 2 start game
                     case "2" :{
                         System.out.println("handle startgame");
+                        switch (receiver[1]){
+                            case "1":
+                                table1.startGame();
+                                clientOut.writeUTF("2:1");
+                                break;
+                            case "2":
+                                table2.startGame();
+                                clientOut.writeUTF("2:1");
+                                break;
+                            case "3":
+                                table3.startGame();
+                                clientOut.writeUTF("2:1");
+                                break;
+                            case "4":
+                                table4.startGame();
+                                clientOut.writeUTF("2:1");
+                                break;
 
-                        if(Integer.parseInt(receiver[1])>= 2) {
-                            //add user 1-4 to String array
-                            String[] users = {receiver[2],receiver[3],receiver[4],receiver[5]};
-                            //create Array for setArray()
-                            Array players = connection.createArrayOf("VARCHAR", users);
-                            addGame.setArray(1, players);
-                            addGame.executeUpdate();
 
-                            clientOut.writeUTF("2:1");
-                            //start game when has two or more players
-
-                        }else {
-                            clientOut.writeUTF("2:0");
                         }
+//                        if(Integer.parseInt(receiver[1])>= 2) {
+//                            //add user 1-4 to String array
+//                            String[] users = {receiver[2],receiver[3],receiver[4],receiver[5]};
+//                            //create Array for setArray()
+//                            Array players = connection.createArrayOf("VARCHAR", users);
+//                            addGame.setArray(1, players);
+//                            addGame.executeUpdate();
+//
+//                            clientOut.writeUTF("2:1");
+//                            //start game when has two or more players
+//
+//                        }else {
+//                            clientOut.writeUTF("2:0");
+//                        }
 
                     }
                     break;
 
                     //case 3 addChess
-                    /*
-                     * Here we have primary key problems.
-                     * what is the primary key of the game?
-                     * using game ID?
-                     * or using Players and Time? If so, TCP does not provide parameter Time.
-                     * existChess = "Select moves from games where ??? = ? AND "primary key is same" ";
-                     */
                     case "3" :{
                         System.out.println("handle addChess");
-                        /*
-                         * only Integer[] allowable?
-                         */
-                        Integer[] movesArr = {Integer.parseInt(receiver[2]),Integer.parseInt(receiver[3])};
-                        Array moves = connection.createArrayOf("INTEGER", movesArr);
 
-                        try(ResultSet exist = existChess.executeQuery()){
-                            if(exist.next()){//stub
-                                System.out.println("The place has been taken, try another place to move in chess");
-                                /*
-                                 * TCP add 3:1 to fail 3:2 to success
-                                 */
-                                addGame.setArray(3, moves);
-                                clientOut.writeUTF("3:1");
-                                //add Chess fail
-                                /*
-                                 * May need extra code in the future
-                                 * */
-                            }else {
-                                System.out.println("Move chess success");
-                                /*
-                                 * TCP add 3:1 to fail 3:2 to success
-                                 */
-                                clientOut.writeUTF("3:2");
-                                //add Chess success
-                            }
+                        int[] move = {Integer.parseInt(receiver[2]),Integer.parseInt(receiver[3])};
+                        switch (receiver[4]){
+                            case "1":
+                                table1.addMove(move);
+                                //Send move to all clients in table1
+                                if (table1.checkLastmove()){
+                                    //Send winning to all clients in table
+                                	 clientOut.writeUTF("2:0");
+                                }
+                            case "2":
+                            case "3":
+                            case "4":
+
                         }
+
+//                        try(ResultSet exist = existChess.executeQuery()){
+//                            if(exist.next()){//stub
+//                                System.out.println("The place has been taken, try another place to move in chess");
+//                                /*
+//                                 * TCP add 3:1 to fail 3:2 to success
+//                                 */
+//                                addGame.setArray(3, moves);
+//                                clientOut.writeUTF("3:1");
+//                                //add Chess fail
+//                                /*
+//                                 * May need extra code in the future
+//                                 * */
+//                            }else {
+//                                System.out.println("Move chess success");
+//                                /*
+//                                 * TCP add 3:1 to fail 3:2 to success
+//                                 */
+//                                clientOut.writeUTF("3:2");
+//                                //add Chess success
+//                            }
+//                        }
                     }
                     break;
 
@@ -170,6 +197,24 @@ class ServerReadHandlerThread implements Runnable{
                         clientOut.writeUTF("6:0");
                     }
                     break;
+                    //case10 joinTable
+                    case "10" :{
+                        System.out.println("handle join table");
+                        switch (receiver[2]){
+                            case "1":
+                                table1.getPlayers().add(receiver[1]);
+                                break;
+                            case "2":
+                                table2.getPlayers().add(receiver[1]);
+                                break;
+                            case "3":
+                                table3.getPlayers().add(receiver[1]);
+                                break;
+                            case "4":
+                                table4.getPlayers().add(receiver[1]);
+                                break;
+                        }
+                    }
 
                     //number out of TCP
                     default:
