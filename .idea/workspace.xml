@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09309d26-9433-4570-b3a2-60bd38703f31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Gomoku/Client/ChessBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/ChessBoard.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Server/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/GomokuServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Server/GomokuServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/Lobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Client/Lobby.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/LobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Client/LobbyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/Loggin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Client/Loggin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/LogginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Client/LogginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/PlayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Client/PlayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Client/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/ServerReadHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Server/ServerReadHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gomoku/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gomoku/Client/application.css" afterDir="false" />
-    </list>
+    <list default="true" id="09309d26-9433-4570-b3a2-60bd38703f31" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,11 +13,11 @@
     <session id="-292070812">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -82,7 +65,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -111,7 +94,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1392" />
     <option name="height" value="877" />
@@ -144,8 +127,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -276,7 +259,7 @@
     <frame x="0" y="23" width="1392" height="877" extended-state="0" />
     <layout>
       <window_info id="Learn" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.27333334" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.27703702" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />

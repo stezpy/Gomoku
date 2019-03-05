@@ -60,6 +60,14 @@ public class Client {
         return tableNum;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public Socket getClientSocket() {
         return this.clientSocket;
     }
@@ -225,7 +233,6 @@ class ReadHandlerThread extends Thread{
         DataInputStream dis = null;
         try{
             while(true){
-                //��ȡ�ͻ�������
                 dis = new DataInputStream(client.getInputStream());
                 String reciver = dis.readUTF();
                 receivedMsg = reciver;
@@ -270,13 +277,11 @@ class WriteHandlerThread extends Thread{
         BufferedReader br = null;
         try{
             while(true){
-                //��ͻ��˻ظ���Ϣ
                 dos = new DataOutputStream(client.getOutputStream());
                 System.out.print("Please Enter:\n");
 
                 while(ready==false){}
 
-                //��������
                 dos.writeUTF(msg);
                 ready = false;
             }
