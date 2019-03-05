@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="Pane" prefHeight="440.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LogginController">
+<AnchorPane fx:id="Pane" prefHeight="440.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gomoku.Client.LogginController">
    <children>
       <ImageView fx:id="icon" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="105.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/timg.jpg" />
+            <Image url="@../timg.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="UsernameText" layoutX="60.0" layoutY="210.0" prefHeight="40.0" prefWidth="240.0" promptText="Username" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="210.0" />

@@ -1,4 +1,4 @@
-package Gomoku;
+package Gomoku.Client;
 
 import java.io.*;
 import java.net.ServerSocket;

@@ -1,4 +1,4 @@
-package Gomoku;
+package Gomoku.Server;
 
 import java.util.ArrayList;
 
@@ -9,10 +9,31 @@ public class Game {
     private ArrayList<String> players;
     private ArrayList<int[]> moves;
     private int n;
-    public Game(ArrayList<String> players){
-        this.players = players;
+
+//    public Game(ArrayList<String> players){
+//        this.players = players;
+//        this.n = players.size();
+//    }
+    public Game(){
+        this.players = new ArrayList<>();
+        this.moves = new ArrayList<>();
+    }
+    public void startGame(){
         this.n = players.size();
     }
+
+    public ArrayList<String> getPlayers() {
+        return players;
+    }
+
+    public ArrayList<int[]> getMoves() {
+        return moves;
+    }
+
+    public int getN() {
+        return n;
+    }
+
     public void addMove(int[] move){
         moves.add(move);
         checkLastmove();
@@ -44,6 +65,20 @@ public class Game {
         }
         //Nothing happened false
         return false;
+    }
+    public String PlayersToDB(){
+        String sum="";
+        for (int i = 0; i <players.size() ; i++) {
+            sum=sum+players.get(i)+"";
+        }
+        return sum;
+    }
+    public String MovesToDB(){
+        String sum ="";
+        for (int i = 0; i < moves.size(); i++) {
+            sum=sum+((moves.get(i)[1]-1)*18+moves.get(i)[0])+"-";
+        }
+        return sum;
     }
     public int countNum(int direction,ArrayList<int[]> moves,int[] move){
         int num =0;

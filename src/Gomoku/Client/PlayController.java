@@ -1,6 +1,10 @@
-package Gomoku;
+package Gomoku.Client;
 
+import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -10,8 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
-public class PlayController {
+public class PlayController extends Application{
 
 	@FXML
 	Canvas canvas;
@@ -55,6 +60,7 @@ public class PlayController {
 		if (currentChess == Chess.BLACK) {
 			if(game[p.x][p.y]==null) {
 				drawChess(currentChess, p);
+				//client.addChess(p.x, p.y);
 				currentChess = Chess.WHITE;
 				game[p.x][p.y] = Chess.BLACK;
 			}
@@ -145,6 +151,27 @@ public class PlayController {
 			gc.fillOval(x - CHESS_SIZE / 2, y - CHESS_SIZE / 2, CHESS_SIZE, CHESS_SIZE);
 			break;
 		}
+	}
+
+
+	/**
+	 * These two methods are used to switch windows from lobby.
+	 */
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("ChessBoard.fxml"));
+			Scene scene = new Scene(root,800,600);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Gomoku");
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showWindow() throws Exception {
+		start(new Stage());
 	}
 }
 

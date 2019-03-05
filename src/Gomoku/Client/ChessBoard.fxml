@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+
+<GridPane prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gomoku.Client.PlayController">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES" prefWidth="50.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="500.0" />
+		<ColumnConstraints hgrow="SOMETIMES" prefWidth="50.0" />
+		<ColumnConstraints hgrow="SOMETIMES" prefWidth="150.0" />
+		<ColumnConstraints hgrow="SOMETIMES" prefWidth="50.0" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints prefHeight="50.0" vgrow="SOMETIMES" />
+		<RowConstraints prefHeight="150.0" vgrow="SOMETIMES" />
+		<RowConstraints prefHeight="350.0" vgrow="SOMETIMES" />
+		<RowConstraints prefHeight="50.0" vgrow="SOMETIMES" />
+	</rowConstraints>
+	<children>
+		<TextField id="chat_Input" GridPane.columnIndex="3" GridPane.rowIndex="3">
+			<GridPane.margin>
+				<Insets left="5.0" right="5.0" />
+			</GridPane.margin>
+		</TextField>
+		<Button id="enter" mnemonicParsing="false" text="Enter" GridPane.columnIndex="4" GridPane.rowIndex="3">
+			<padding>
+				<Insets left="5.0" right="5.0" />
+			</padding>
+		</Button>
+		<Button id="play" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="PLAY！" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+			<GridPane.margin>
+				<Insets bottom="10.0" />
+			</GridPane.margin>
+		</Button>
+		<Label id="label_play01" text="PLAY" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+		<Label id="label_play03" text="PLAY" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+		<Label id="label_play02" text="PLAY" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+			<GridPane.margin>
+				<Insets bottom="20.0" />
+			</GridPane.margin>
+		</Label>
+		<Canvas fx:id="canvas" height="500.0" onMouseClicked="#handleCanvasClicked" width="500.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+		<Button id="back" mnemonicParsing="false" text="BACK" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+		<TextArea id="chat_Lobby" prefHeight="305.0" prefWidth="202.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+			<GridPane.margin>
+				<Insets right="10.0" />
+			</GridPane.margin>
+		</TextArea>
+		<TitledPane animated="false" prefHeight="186.0" prefWidth="201.0" text="Players" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="TOP">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="189.0">
+					<children>
+						<Label id="label_name01" layoutX="14.0" layoutY="14.0" text="User 1：" />
+						<Label id="label_name02" layoutX="14.0" layoutY="45.0" text="User 2：" />
+						<Label id="label_name03" layoutX="14.0" layoutY="76.0" text="User 3：" />
+						<Label id="label_name04" layoutX="14.0" layoutY="107.0" text="User 4：" />
+						<Circle layoutX="121.0" layoutY="53.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+						<Circle fill="WHITE" layoutX="121.0" layoutY="22.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+						<Circle fill="#ff3d1fb3" layoutX="121.0" layoutY="84.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+						<Circle fill="#2197ffd5" layoutX="121.0" layoutY="115.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label id="label_name04" layoutX="14.0" layoutY="135.0" text="Current Chess：" />
+                  <Circle fill="WHITE" layoutX="121.0" layoutY="143.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+					</children>
+				</AnchorPane>
+			</content>
+			<padding>
+				<Insets right="10.0" top="10.0" />
+			</padding>
+		</TitledPane>
+	</children>
+</GridPane>
