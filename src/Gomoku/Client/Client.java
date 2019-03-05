@@ -14,6 +14,8 @@ public class Client {
     WriteHandlerThread writeToServer;
     ArrayList<String> playersArrL;
     String receivedMsg;
+    private int tableNum;
+
 
     public void closeSocket() throws IOException{
         listenFromServer.interrupt();
@@ -52,6 +54,10 @@ public class Client {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public int getTableNum() {
+        return tableNum;
     }
 
     public Socket getClientSocket() {
@@ -153,6 +159,25 @@ public class Client {
         //new Thread(new ClientWriteHandlerThread(clientSocket, s)).start();
         if(returnValue = handleReceivedMsg("1:0", "1:1")) {
             System.out.println("login OK!");
+        }
+
+        return returnValue;
+    }
+
+
+    public boolean joinTable(String username, int tableNum) {
+
+        int userNumber = 0;
+        ArrayList<String> userNames = new ArrayList<>(userNumber);
+        String s = "10:" + username + ":" + tableNum;
+        boolean returnValue;
+
+        //send s to Server
+        writeToServer.writeTo(s);
+
+        if(returnValue = handleReceivedMsg("10:0", "10:1")) {
+            System.out.println("login OK!");
+            this.tableNum = tableNum;
         }
 
         return returnValue;
