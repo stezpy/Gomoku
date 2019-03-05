@@ -1,5 +1,5 @@
 
-package Gomoku;
+package Gomoku.Server;
 
         import java.io.DataInputStream;
         import java.io.DataOutputStream;
@@ -47,7 +47,7 @@ class ServerReadHandlerThread implements Runnable{
             PreparedStatement addGame =  connection.prepareStatement("INSERT INTO games(players,time,moves) VALUES (?,?,?)");
             PreparedStatement existUser = connection.prepareStatement("select username from users where username=?");
             PreparedStatement existAccount = connection.prepareStatement("select username, password from users where username=? AND password=?");
-            PreparedStatement existChess = connection.prepareStatement("select .....");
+            PreparedStatement existLookBack = connection.prepareStatement("select moves from games where players like CONCAT('%', ?, '%') ");
 
             while(true){
 
@@ -145,19 +145,68 @@ class ServerReadHandlerThread implements Runnable{
                     //case 3 addChess
                     case "3" :{
                         System.out.println("handle addChess");
-
                         int[] move = {Integer.parseInt(receiver[2]),Integer.parseInt(receiver[3])};
                         switch (receiver[4]){
                             case "1":
                                 table1.addMove(move);
-                                //Send move to all clients in table1
+
                                 if (table1.checkLastmove()){
+                                    addGame.setString(1, table1.PlayersToDB());
+                                    //add all moves to the database
+                                    addGame.setString(3, table1.MovesToDB());
+                                    //Send move to all clients in table1
                                     //Send winning to all clients in table
-                                	 clientOut.writeUTF("2:0");
+                                	 clientOut.writeUTF("3:1");
+                                	 System.out.println("Winner!");
+                                }else {
+                                	clientOut.writeUTF("3:0");
+                                	System.out.println("continue to move chess");
                                 }
                             case "2":
+                                table2.addMove(move);
+                                if (table2.checkLastmove()){
+                                    addGame.setString(1, table2.PlayersToDB());
+                                    //add all moves to the database
+                                    addGame.setString(3, table2.MovesToDB());
+                                    //Send move to all clients in table1
+
+                                    //Send winning to all clients in table
+                                    clientOut.writeUTF("3:1");
+                                    System.out.println("Winner!");
+                                }else {
+                                    clientOut.writeUTF("3:0");
+                                    System.out.println("continue to move chess");
+                                }
                             case "3":
+                                table3.addMove(move);
+                                if (table3.checkLastmove()){
+                                    addGame.setString(1, table3.PlayersToDB());
+                                    //add all moves to the database
+                                    addGame.setString(3, table3.MovesToDB());
+                                    //Send move to all clients in table1
+
+                                    //Send winning to all clients in table
+                                    clientOut.writeUTF("3:1");
+                                    System.out.println("Winner!");
+                                }else {
+                                    clientOut.writeUTF("3:0");
+                                    System.out.println("continue to move chess");
+                                }
                             case "4":
+                                table4.addMove(move);
+                                if (table4.checkLastmove()){
+                                    addGame.setString(1, table4.PlayersToDB());
+                                    //add all moves to the database
+                                    addGame.setString(3, table4.MovesToDB());
+                                    //Send move to all clients in table1
+
+                                    //Send winning to all clients in table
+                                    clientOut.writeUTF("3:1");
+                                    System.out.println("Winner!");
+                                }else {
+                                    clientOut.writeUTF("3:0");
+                                    System.out.println("continue to move chess");
+                                }
 
                         }
 
@@ -186,17 +235,40 @@ class ServerReadHandlerThread implements Runnable{
                     break;
 
                     //case 4 requireHistory
-                    //case 5 lookBack
-
-                    //case 6 endGame
-                    case "6" :{
-                        System.out.println("handle endGame");
-                        //if receiver[1] exist in the game
-                        clientOut.writeUTF("6:1");
-                        //else
-                        clientOut.writeUTF("6:0");
+                    case "4" :{
+                        System.out.println("handle requireHistory");
+                        
                     }
                     break;
+                    //case 5 lookBack
+                    case "5" :{
+                    	System.out.println("handle lookBack");
+                    	existLookBack.setString(1,receiver[1]);
+                        try(ResultSet exist = existLookBack.executeQuery()){
+                            if(exist.next()){//stub
+                                System.out.println("Here is the lookBack!");
+                                clientOut.writeUTF("5:"+receiver[1]+exist.getString("moves"));
+                                
+                            }else {
+                            	System.out.println("No such match");
+                            	/*
+                            	 * need additional TCP
+                            	 */
+                            }
+                        }
+                    }
+
+//                    //case 6 endGame
+//                    case "6" :{
+//                        System.out.println("handle endGame");
+//                        //if receiver[1] exist in the game
+//                        clientOut.writeUTF("6:1");
+//                        //else
+//                        clientOut.writeUTF("6:0");
+//                    }
+//                    break;
+                    
+                    
                     //case10 joinTable
                     case "10" :{
                         System.out.println("handle join table");

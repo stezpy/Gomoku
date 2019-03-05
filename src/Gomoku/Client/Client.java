@@ -1,7 +1,6 @@
-package Gomoku;
+package Gomoku.Client;
 
 import java.io.*;
-import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -201,7 +200,7 @@ class ReadHandlerThread extends Thread{
         DataInputStream dis = null;
         try{
             while(true){
-                //¶ÁÈ¡¿Í»§¶ËÊý¾Ý
+                //ï¿½ï¿½È¡ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 dis = new DataInputStream(client.getInputStream());
                 String reciver = dis.readUTF();
                 receivedMsg = reciver;
@@ -246,13 +245,13 @@ class WriteHandlerThread extends Thread{
         BufferedReader br = null;
         try{
             while(true){
-                //Ïò¿Í»§¶Ë»Ø¸´ÐÅÏ¢
+                //ï¿½ï¿½Í»ï¿½ï¿½Ë»Ø¸ï¿½ï¿½ï¿½Ï¢
                 dos = new DataOutputStream(client.getOutputStream());
                 System.out.print("Please Enter:\n");
 
                 while(ready==false){}
 
-                //·¢ËÍÊý¾Ý
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 dos.writeUTF(msg);
                 ready = false;
             }

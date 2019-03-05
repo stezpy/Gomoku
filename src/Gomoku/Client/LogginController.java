@@ -1,4 +1,4 @@
-package Gomoku;
+package Gomoku.Client;
 /**
  * This is the controller of loggin interface. Containing some operations to
  * action event.
@@ -35,7 +35,7 @@ public class LogginController {
 	@FXML
 	private Button Register;
 	
-	//private Client client;
+	private Client client;
 	
 	/**
 	 * Action caused by clicking Register button.
@@ -66,7 +66,7 @@ public class LogginController {
 		//init();
 		String username = UsernameText.getText();
 		String password = PasswordText.getText();
-		//if(client.login(username, password))
+		if(client.login(username, password))
 			changeWindow();
 	}
 	
@@ -122,9 +122,10 @@ public class LogginController {
 	/**
 	 * When client is not created, create one.
 	 */
-//	public void init(){
-//		if(client == null)
-//			this.client = new Client();
-//	}
+	public void initialize(){
+		if(client == null)
+			this.client = new Client();
+		System.out.println("Initialised");
+	}
 	
 }

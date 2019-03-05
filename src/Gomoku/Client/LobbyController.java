@@ -1,5 +1,9 @@
-package Gomoku;
+package Gomoku.Client;
 
+/**
+ * @author dingweiran
+ * @version 2019-3-4
+ */
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +38,8 @@ public class LobbyController extends Application{
 	@FXML
 	private Button SendButton;
 	
+	@FXML private Circle table1;  @FXML private Circle table2;  @FXML private Circle table3;  @FXML private Circle table4;
+	
 	@FXML private Circle chair11; @FXML private Circle chair12; @FXML private Circle chair13; @FXML private Circle chair14;
 	
 	@FXML private Circle chair21; @FXML private Circle chair22; @FXML private Circle chair23; @FXML private Circle chair24;
@@ -44,6 +50,8 @@ public class LobbyController extends Application{
 	
 	//Add all the chairs to an array to simplify the code.
 	private Circle[][] chairs = new Circle[4][4];
+	
+	private Circle[] tables = new Circle[4];
 	
 	//Switch to the game lobby after clent logged.
 	public void showWindow() throws Exception {
@@ -73,6 +81,7 @@ public class LobbyController extends Application{
 		chairs[1][0]=chair21; chairs[1][1]=chair22; chairs[1][2]=chair23; chairs[1][3]=chair24;
 		chairs[2][0]=chair31; chairs[2][1]=chair32; chairs[2][2]=chair33; chairs[2][3]=chair34;
 		chairs[3][0]=chair41; chairs[3][1]=chair42; chairs[3][2]=chair43; chairs[3][3]=chair44;
+		tables[0]=table1; tables[1]=table2; tables[2]=table3; tables[3]=table4;
 		GenerateFriendList();
 		GenerateHistory();
 	}
@@ -82,8 +91,9 @@ public class LobbyController extends Application{
 	 * Here is the method to handle event of clicking 16 chairs. After click an avaliable
 	 * chair, the user will get in the game room.
 	 * @param event
+	 * @throws Exception 
 	 */
-	public void ChairEvent(MouseEvent event) {
+	public void ChairEvent(MouseEvent event) throws Exception {
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<4; j++) {
 				if(event.getSource() == chairs[i][j]) {		//find the chair that be clicked.
@@ -97,11 +107,17 @@ public class LobbyController extends Application{
 	}
 	/**
 	 * A helper method of ChairEvent(). It sends requests to server and update chair status.
+	 * @throws Exception 
 	 */
-	public void ChairEventHelper(Circle chair) {
-		System.out.println("Get in room.");
-		chair.setFill(Color.GREY);
-		chair.setDisable(true);
+	public void ChairEventHelper(Circle chair) throws Exception {
+		Stage stage = (Stage) canvas.getScene().getWindow();
+		stage.close();
+		
+		PlayController board = new PlayController();
+		board.showWindow();
+		//these message should be sent to all clients.
+//		chair.setFill(Color.GREY);
+//		chair.setDisable(true);
 	}
 	
 	
