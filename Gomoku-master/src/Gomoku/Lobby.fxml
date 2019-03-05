@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<GridPane fx:id="canvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gomoku.LobbyController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" prefWidth="65.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="250.0" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="250.0" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Circle fx:id="table1" fill="#cd950c" radius="70.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Circle fx:id="table2" fill="#cd950c" radius="70.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Circle fx:id="table3" fill="#cd950c" radius="70.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Circle fx:id="table4" fill="#cd950c" radius="70.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <TabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="4" GridPane.columnSpan="2147483647" GridPane.rowSpan="2">
+        <tabs>
+          <Tab onSelectionChanged="#GenerateFriendList" text="friends">
+               <content>
+                  <ListView fx:id="friendslist" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+          </Tab>
+          <Tab onSelectionChanged="#GenerateHistory" text="history">
+               <content>
+                  <ListView fx:id="historylist" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+          </Tab>
+        </tabs>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+         <effect>
+            <Blend mode="HARD_LIGHT" />
+         </effect>
+      </TabPane>
+      <TextArea fx:id="chatting" prefHeight="276.0" prefWidth="366.0" GridPane.columnIndex="4" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
+      <TextField fx:id="typing" prefHeight="30.0" prefWidth="291.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+      <Button fx:id="SendButton" defaultButton="true" mnemonicParsing="false" onAction="#SendButtonClick" prefHeight="30.0" prefWidth="60.0" text="Send" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label prefHeight="31.0" prefWidth="97.0" text="chatting room" GridPane.columnIndex="4" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label prefHeight="30.0" prefWidth="110.0" text="Game Lobby" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Circle fx:id="chair11" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Circle fx:id="chair12" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <Circle fx:id="chair13" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Circle fx:id="chair14" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <Circle fx:id="chair21" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <Circle fx:id="chair22" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <Circle fx:id="chair23" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Circle fx:id="chair24" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <Circle fx:id="chair31" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Circle fx:id="chair32" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <Circle fx:id="chair33" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Circle fx:id="chair34" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+      <Circle fx:id="chair41" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Circle fx:id="chair42" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <Circle fx:id="chair44" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+      <Circle fx:id="chair43" fill="WHITE" onMouseClicked="#ChairEvent" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+   </children>
+</GridPane>
